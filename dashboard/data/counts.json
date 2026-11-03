@@ -1,0 +1,27 @@
+{
+  "arms": {
+    "control": {
+      "mean_revenue": 3.753221,
+      "n": 9955,
+      "n_retained": 3991,
+      "sd_revenue": 1.987987
+    },
+    "treatment": {
+      "mean_revenue": 3.740643,
+      "n": 10045,
+      "n_retained": 4191,
+      "sd_revenue": 2.029618
+    }
+  },
+  "chi2": 0.405,
+  "early": {
+    "control": {
+      "n": 951,
+      "n_retained": 403
+    },
+    "treatment": {
+      "n": 1049,
+      "n_retained": 434
+    }
+  }
+}

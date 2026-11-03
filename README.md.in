@@ -1,0 +1,56 @@
+# Учебный разбор рандомизации
+
+[![build](https://github.com/Grigorzelidze/synthetic-ab-readout/actions/workflows/build.yml/badge.svg)](https://github.com/Grigorzelidze/synthetic-ab-readout/actions/workflows/build.yml)
+
+Синтетические назначения, не эксперимент работодателя и не открытый датасет. Эффект удержания заложен в `scripts/generate.py` (seed 20261103): treatment удерживается с вероятностью 0,42, control с 0,40. Выручка в обеих группах рисуется одним логнормальным законом. Ниже цифры, которые посчитал пайплайн, а не эти константы.
+
+## Перекос групп
+
+control @@N0@@, treatment @@N1@@. Хи-квадрат @@CHI2@@, порог 10,827. Ниже порога, поэтому метрику читать можно. Файл, где из treatment вынуто около 10% строк, этот порог не проходит: `make test` подменяет загрузку и ждёт, что `dbt build` упадёт.
+
+## Удержание
+
+| Группа | Доля удержанных |
+|---|---:|
+| control | @@RET0@@% |
+| treatment | @@RET1@@% |
+
+Разница treatment минус control: @@LIFT@@ п.п. Интервал @@LIFT_LO@@; @@LIFT_HI@@ п.п. Нормальное приближение, 1,96 стандартных ошибок, из счётчиков витрины.
+
+@@RET_NOTE@@
+
+## Выручка, ограничение
+
+Средняя: control @@REV0@@, treatment @@REV1@@. Разница @@REV_DIFF@@, интервал @@REV_LO@@; @@REV_HI@@.
+
+@@REV_NOTE@@
+
+## Первые 2000 идентификаторов
+
+Разница удержания @@EARLY_LIFT@@ п.п., интервал @@EARLY_LO@@; @@EARLY_HI@@. Отсечка `user_id < 2000` задана в генераторе до подсчёта.
+
+@@EARLY_NOTE@@
+
+## Что открывается
+
+- [Страница](https://grigorzelidze.github.io/synthetic-ab-readout/) — те же две доли и интервал.
+- [`docs/method.md`](docs/method.md) — почему перекос читается раньше метрики и почему ранний срез не решение.
+- [`dashboard/data/counts.json`](dashboard/data/counts.json) — счётчики витрины.
+
+## Как посчитать заново
+
+Нужны `psql`, Python 3.9+ и пакеты из `requirements.txt` (pandas, numpy, dbt). Локальный кластер — `127.0.0.1:54333`, каталог `.pgdata` в git не входит. В CI кластер не поднимается: workflow указывает на Postgres 16.
+
+```bash
+make build
+make test
+make check
+```
+
+`make build` заново генерирует CSV, грузит `raw.unit`, dbt собирает `clean.unit` и витрины, dbt-тест проверяет перекос, pandas сверяет счётчики и пишет README и страницу.
+
+`make test` считает хи-квадрат на битом файле, подменяет загрузку и ждёт падения `dbt build`, затем возвращает чистый файл.
+
+`make check` собирает README и страницу в памяти и сравнивает с файлами в git.
+
+Сырой CSV в git не входит.

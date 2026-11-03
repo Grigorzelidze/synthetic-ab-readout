@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Учебный разбор рандомизации</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f4f1ea; color: #1c1c1c; font: 16px/1.45 Iowan Old Style, Palatino, Georgia, serif; }
+  main { width: min(880px, 100%); margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
+  p { max-width: 68ch; }
+  .muted { color: #5e594f; }
+  .bars { background: #fff; border: 1px solid #e2dcd0; padding: 10px 14px; margin: 12px 0; }
+  .bar-row { display: grid; grid-template-columns: 7rem minmax(0, 1fr) 3.4rem; gap: 10px; align-items: center; margin: 8px 0; }
+  .bar-track { display: block; height: 16px; background: #f4f1ea; }
+  .bar-fill { display: block; height: 16px; background: #1f4e5f; }
+  .bar-value { text-align: right; font-variant-numeric: tabular-nums; }
+  a { color: #1f4e5f; }
+</style>
+</head>
+<body>
+<main>
+  <p class="muted">Синтетические назначения · не эксперимент работодателя</p>
+  <h1>Удержание, не одна цифра в центре</h1>
+  <p>control 9955 человек, treatment 10045. Хи-квадрат групп 0,405, порог 10,827.</p>
+  <div class="bars"><div class="bar-row"><span class="bar-label">control</span><span class="bar-track"><span class="bar-fill" style="width: 40.1%"></span></span><span class="bar-value">40,1%</span></div><div class="bar-row"><span class="bar-label">treatment</span><span class="bar-track"><span class="bar-fill" style="width: 41.7%"></span></span><span class="bar-value">41,7%</span></div></div>
+  <p>Разница 1,6 п.п. Интервал 0,3; 3,0 п.п.</p>
+  <p>Интервал удержания лежит выше нуля.</p>
+  <p>Выручка: -0,01, интервал -0,07; 0,04. Интервал средней выручки включает ноль. Это не доказательство, что выручка не сдвинулась: выборка такого сдвига не отделила.</p>
+  <p>Первые 2000 идентификаторов: -1,0 п.п., интервал -5,3; 3,3. На первых 2000 идентификаторах интервал удержания включает ноль: этот срез сдвиг не отделяет.</p>
+  <p class="muted"><a href="https://github.com/Grigorzelidze/synthetic-ab-readout/blob/main/docs/method.md">Почему перекос раньше метрики</a></p>
+</main>
+</body>
+</html>

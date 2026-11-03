@@ -1,0 +1,4 @@
+pandas==2.3.3
+numpy==2.0.2
+dbt-core==1.9.1
+dbt-postgres==1.9.1

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Учебный разбор рандомизации</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f4f1ea; color: #1c1c1c; font: 16px/1.45 Iowan Old Style, Palatino, Georgia, serif; }
+  main { width: min(880px, 100%); margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
+  p { max-width: 68ch; }
+  .muted { color: #5e594f; }
+  .bars { background: #fff; border: 1px solid #e2dcd0; padding: 10px 14px; margin: 12px 0; }
+  .bar-row { display: grid; grid-template-columns: 7rem minmax(0, 1fr) 3.4rem; gap: 10px; align-items: center; margin: 8px 0; }
+  .bar-track { display: block; height: 16px; background: #f4f1ea; }
+  .bar-fill { display: block; height: 16px; background: #1f4e5f; }
+  .bar-value { text-align: right; font-variant-numeric: tabular-nums; }
+  a { color: #1f4e5f; }
+</style>
+</head>
+<body>
+<main>
+  <p class="muted">Синтетические назначения · не эксперимент работодателя</p>
+  <h1>Удержание, не одна цифра в центре</h1>
+  <p>control @@N0@@ человек, treatment @@N1@@. Хи-квадрат групп @@CHI2@@, порог 10,827.</p>
+  <div class="bars">@@BARS@@</div>
+  <p>Разница @@LIFT@@ п.п. Интервал @@LIFT_LO@@; @@LIFT_HI@@ п.п.</p>
+  <p>@@RET_NOTE@@</p>
+  <p>Выручка: @@REV_DIFF@@, интервал @@REV_LO@@; @@REV_HI@@. @@REV_NOTE@@</p>
+  <p>Первые 2000 идентификаторов: @@EARLY_LIFT@@ п.п., интервал @@EARLY_LO@@; @@EARLY_HI@@. @@EARLY_NOTE@@</p>
+  <p class="muted"><a href="https://github.com/Grigorzelidze/synthetic-ab-readout/blob/main/docs/method.md">Почему перекос раньше метрики</a></p>
+</main>
+</body>
+</html>

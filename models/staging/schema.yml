@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: unit
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+      - name: arm
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["control", "treatment"]
+      - name: retained
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
